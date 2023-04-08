@@ -20,18 +20,13 @@ const userSchema = new mongoose.Schema({
     password: String
 });
 
-
 userSchema.plugin(encrypt, {secret: process.env.SECRET, encryptedFields: ["password"]});
 
-
 const User = mongoose.model("User", userSchema);
-
 
 app.get("/", (req, res)=>{
     res.render("home");
 });
-
-
 
 app.route("/login")
 .get((req, res)=>{
@@ -66,9 +61,6 @@ app.route("/login")
     });
 });
 
-
-
-
 app.route("/register")
 .get((req, res)=>{
     res.render("register");
@@ -81,15 +73,6 @@ app.route("/register")
     newUser.save();
     res.render("secrets");
 });
-
-
-
-
-
-
-
-
-
 
 app.listen(3000, ()=>{
     console.log("Server started at port 3000");
